@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Final">
+      <UniqueIdentifier>{326054ea-ced7-4472-bf76-dc3a19092c5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,6 +24,21 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Final\CRunner.cpp">
+      <Filter>src\Final</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnimationAction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="C3SButton.cpp">
+      <Filter>src\Final</Filter>
+    </ClCompile>
+    <ClCompile Include="CScore.cpp">
+      <Filter>src\Final</Filter>
+    </ClCompile>
+    <ClCompile Include="CObstacle.cpp">
+      <Filter>src\Final</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -31,6 +49,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Final\CRunner.h">
+      <Filter>src\Final</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnimationAction.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="C3SButton.h">
+      <Filter>src\Final</Filter>
+    </ClInclude>
+    <ClInclude Include="CScore.h">
+      <Filter>src\Final</Filter>
+    </ClInclude>
+    <ClInclude Include="CObstacle.h">
+      <Filter>src\Final</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
