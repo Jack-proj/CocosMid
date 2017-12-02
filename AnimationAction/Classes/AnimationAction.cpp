@@ -63,7 +63,6 @@ bool AnimationAction::init()
 	action->gotoFrameAndPlay(0, 11, true);
 //**********************************************************************
 
-
 // 利用程式直接產生序列幀動畫 
 // STEP 1 : 讀入儲存多張圖片的 plist 檔
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("scene101.plist");
