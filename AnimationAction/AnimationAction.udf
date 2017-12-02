@@ -29,8 +29,9 @@
       <Value ctype="TabsInfo">
         <OpenedDocuments>
           <FilePathData Path="AnimationAction.csd" />
+          <FilePathData Path="RunnerNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="AnimationAction.csd" />
+        <ActiveDocument Path="RunnerNode.csd" />
       </Value>
     </Item>
   </Properties>

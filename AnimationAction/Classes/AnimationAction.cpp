@@ -56,6 +56,14 @@ bool AnimationAction::init()
     auto rootNode = CSLoader::createNode("AnimationAction.csb");
     addChild(rootNode);
 
+//跑道線動畫************************************************************
+	auto runner = (cocos2d::Sprite *)rootNode->getChildByName("Sprite_1");
+	auto action = (ActionTimeline *)CSLoader::createTimeline("AnimationAction.csb");
+	rootNode->runAction(action);
+	action->gotoFrameAndPlay(0, 11, true);
+//**********************************************************************
+
+
 // 利用程式直接產生序列幀動畫 
 // STEP 1 : 讀入儲存多張圖片的 plist 檔
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("scene101.plist");
@@ -113,9 +121,9 @@ bool AnimationAction::init()
 	//auto actionBody = Sprite::createWithSpriteFrameName("cuber01.png");
 	//actionBody->setPosition(visibleSize.width / 2.0f, visibleSize.height / 2.0f);
 	//actionBody->setTag(101);	// 用於取得該物件
-	//actionBody->setColor(Color3B(200, 209, 63));
+	//actionBody->setColor(Color3B(82, 131, 151));
 	//this->addChild(actionBody);
-	// 後續其他的範例都使用這個 actionBody 
+	//// 後續其他的範例都使用這個 actionBody 
 
 // BezierBy/BezierTo
 	// BezierTo
@@ -156,15 +164,15 @@ bool AnimationAction::init()
 //-------------------------------------------------------------------------------------------------
 
 // JumpTo/JumpBy
-/*
-	JumpTo * jumpto = JumpTo::create(1.25f, Point(40, 360), 150, 3);
-	actionBody->runAction(jumpto);
+
+	/*JumpTo * jumpto = JumpTo::create(1.25f, Point(40, 360), 150, 3);
+	actionBody->runAction(jumpto);*/
 	// 產生反向的 Action，上一行以及以下的三行擇一直行即可
-	JumpBy * jumpby = JumpBy::create(1.25f, Point(-600, 0), 150, 3);
+	/*JumpBy * jumpby = JumpBy::create(1.25f, Point(-600, 0), 150, 3);
 	auto jumpbyBack = jumpby->reverse();
 	auto sequence = Sequence::create(jumpby, jumpbyBack, NULL);
-	actionBody->runAction(Sequence::create(jumpby, jumpbyBack, NULL));
-*/
+	actionBody->runAction(Sequence::create(jumpby, jumpbyBack, NULL));*/
+
 //-------------------------------------------------------------------------------------------------
 
 // ScaleTo/ScaleTo
