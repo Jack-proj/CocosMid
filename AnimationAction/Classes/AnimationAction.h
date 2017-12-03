@@ -19,6 +19,12 @@ private:
 	cocos2d::CallFunc *_mycallback;
 	cocos2d::Point _runnerPt;
 
+	cocos2d::Label *label1;
+	int  _sceneno;
+	char _cSceneNo[10];
+	cocos2d::Sprite *returnbtn;
+	cocos2d::Rect    rectReturn;
+	cocos2d::Rect    rectCuber;
 public:
 	~AnimationAction();
     // there's no 'id' in cpp, so we recommend returning the class instance pointer

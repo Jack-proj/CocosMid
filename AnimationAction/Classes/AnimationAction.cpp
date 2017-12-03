@@ -1,6 +1,9 @@
 #include "AnimationAction.h"
 #include "cocostudio/CocoStudio.h"
 #include "Final\CRunner.h"
+#include "Final\CObstacle.h"
+#include "Final\CScore.h"
+#include"Final\C3SButton.h"
 
 USING_NS_CC;
 
@@ -57,10 +60,15 @@ bool AnimationAction::init()
     addChild(rootNode);
 
 //跑道線動畫************************************************************
-	auto runner = (cocos2d::Sprite *)rootNode->getChildByName("Sprite_1");
+	auto runway = (cocos2d::Sprite *)rootNode->getChildByName("Sprite_1");
 	auto action = (ActionTimeline *)CSLoader::createTimeline("AnimationAction.csb");
 	rootNode->runAction(action);
 	action->gotoFrameAndPlay(0, 11, true);
+
+//背景音樂**************************************************************
+	auto bgm = (cocostudio::ComAudio *)rootNode->getChildByName("BGM")->getComponent("BGM");
+	bgm->playBackgroundMusic();
+
 //**********************************************************************
 
 // 利用程式直接產生序列幀動畫 
@@ -122,7 +130,7 @@ bool AnimationAction::init()
 	//actionBody->setTag(101);	// 用於取得該物件
 	//actionBody->setColor(Color3B(82, 131, 151));
 	//this->addChild(actionBody);
-	//// 後續其他的範例都使用這個 actionBody 
+	// 後續其他的範例都使用這個 actionBody 
 
 // BezierBy/BezierTo
 	// BezierTo
@@ -318,12 +326,27 @@ bool AnimationAction::init()
 //	runnerRoot->runAction(cocos2d::Sequence::create(jumpAction, jumpBack, NULL));
 */
 //-------------------------------------------------------------------------------------------------
+	/*test area*/
+	this->_sceneno = 102;
+	strcpy(this->_cSceneNo, "321GO");
+	//一般(非中文字)文字的顯示方式
+	label1 = Label::createWithBMFont("fonts/321GO.fnt", _cSceneNo);
+
+	Size size;
+	this->returnbtn = (cocos2d::Sprite *)rootNode->getChildByName("returnbtn");
+	//this->returnbtn = Sprite::create("scene101/returnbtn.png");
+	size = returnbtn->getContentSize();
+	this->returnbtn->setPosition(Vec2(origin.x + size.width / 2 + 5, origin.y + visibleSize.height - size.height / 2 - 5));
+
+	Point pos = returnbtn->getPosition();
+	this->rectReturn = Rect(pos.x - size.width / 2, pos.y - size.height / 2, size.width, size.height);
+	this->addChild(returnbtn, 1);
 
 // Example 2 : RunnerNode
-	//auto runner = CRunner("RunnerNode.csb", *this);
-	//runner.setPosition(visibleSize.width/ 2.0f + 300, visibleSize.height / 2.0f);
-	//runner.setAnimation("cuberanim.plist");
-	//runner.go();
+	auto runner = CRunner("RunnerNode.csb", *this);
+	runner.setPosition(visibleSize.width/ 2.0f + 300, visibleSize.height / 2.0f);
+	runner.setAnimation("cuberanim.plist");
+	runner.go();
 //-------------------------------------------------------------------------------------------------
 	
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
@@ -397,6 +420,18 @@ bool AnimationAction::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEven
 	}
 #endif
 	return true;
+
+	if (rectCuber.containsPoint(touchLoc)) {
+		this->_sceneno++;
+		int i = this->_sceneno, j = 0;
+		while (i > 0) {
+			this->_cSceneNo[8 - j] = i % 10 + 48;
+			i = i / 10;
+			j++;
+		}
+		label1->setString(_cSceneNo);
+	}
+
 }
 
 void  AnimationAction::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) //觸碰移動事件

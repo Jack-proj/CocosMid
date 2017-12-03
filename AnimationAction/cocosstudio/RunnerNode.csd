@@ -2,51 +2,10 @@
   <PropertyGroup Name="RunnerNode" Type="Node" ID="4ff56b86-c22a-424e-b657-f3b655ab64bb" Version="3.10.0.0" />
   <Content ctype="GameProjectContent">
     <Content>
-      <Animation Duration="24" Speed="1.0000">
-        <Timeline ActionTag="-632814240" Property="FileData">
-          <TextureFrame FrameIndex="0" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber01.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="3" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber02.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="6" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber03.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="9" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber04.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="12" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber05.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="15" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber06.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="18" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber07.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="21" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber08.png" Plist="scene101.plist" />
-          </TextureFrame>
-          <TextureFrame FrameIndex="24" Tween="False">
-            <TextureFile Type="PlistSubImage" Path="cuber01.png" Plist="scene101.plist" />
-          </TextureFrame>
-        </Timeline>
-      </Animation>
+      <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="runnerRoot" Tag="11" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="Sprite_2" ActionTag="-632814240" Tag="31" IconVisible="False" LeftMargin="-120.5000" RightMargin="-120.5000" TopMargin="-105.0000" BottomMargin="-105.0000" ctype="SpriteObjectData">
-            <Size X="241.0000" Y="210.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="cuber01.png" Plist="scene101.plist" />
-            <BlendFunc Src="1" Dst="771" />
-          </AbstractNodeData>
           <AbstractNodeData Name="shadow_cuber01" ActionTag="-1407390910" Tag="22" IconVisible="False" LeftMargin="-51.1196" RightMargin="-66.8804" TopMargin="82.8305" BottomMargin="-111.8305" ctype="SpriteObjectData">
             <Size X="118.0000" Y="29.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -58,7 +17,7 @@
             <FileData Type="PlistSubImage" Path="cubershadow.png" Plist="scene101.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="body_cuber01" Visible="False" ActionTag="95301713" Tag="13" IconVisible="False" LeftMargin="-120.5000" RightMargin="-120.5000" TopMargin="-106.0000" BottomMargin="-104.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="body_cuber01" ActionTag="95301713" Tag="13" IconVisible="False" LeftMargin="-120.5000" RightMargin="-120.5000" TopMargin="-106.0000" BottomMargin="-104.0000" ctype="SpriteObjectData">
             <Size X="241.0000" Y="210.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="1.0000" />
