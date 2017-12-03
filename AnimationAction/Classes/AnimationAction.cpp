@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-//#define DOUBLEJUMP 1
+#define DOUBLEJUMP 1
 
 using namespace cocostudio::timeline;
 using namespace ui;
@@ -37,6 +37,7 @@ AnimationAction::~AnimationAction()
 	AnimationCache::destroyInstance();  // 釋放 AnimationCache 取得的資源
 	SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
 	Director::getInstance()->getTextureCache()->removeUnusedTextures();
+	SimpleAudioEngine::getInstance()->unloadEffect("thinking cloud.mp3");
 }
 
 // on "init" you need to initialize your instance
@@ -69,7 +70,27 @@ bool AnimationAction::init()
 	auto bgm = (cocostudio::ComAudio *)rootNode->getChildByName("BGM")->getComponent("BGM");
 	bgm->playBackgroundMusic();
 
-//**********************************************************************
+//主角******************************************************************
+	auto runner = CRunner("RunnerNode.csb", *this);
+	runner.setPosition(1100,330);
+	runner.setAnimation("cuberanim.plist");
+	runner.go();
+	SimpleAudioEngine::getInstance()->preloadEffect("thinking cloud.mp3");
+
+#ifdef DOUBLEJUMP
+	_NoJumps = 0;
+	_myJump = JumpBy::create(0.65f, Point(0, 0), 150, 1);
+	_myJump->retain();
+	_runnerPt = Vec2(1100, 330);
+	_mycallback = CallFunc::create(this, callfunc_selector(AnimationAction::actionFinished));
+	_mycallback->retain();
+#endif
+
+//障礙物測試************************************************************
+	auto obj1 = CObstacle("triangleNode.csb", *this);
+
+	obj1.effectPlay();
+
 
 // 利用程式直接產生序列幀動畫 
 // STEP 1 : 讀入儲存多張圖片的 plist 檔
@@ -283,16 +304,17 @@ bool AnimationAction::init()
 //-------------------------------------------------------------------------------------------------
 
 // Double Jump 
-#ifdef DOUBLEJUMP
-	_NoJumps = 0;
-	_myJump = JumpBy::create(0.65f, Point(0, 0), 150, 1);
-	_myJump->retain();
-	actionBody->setScale(0.65f);
-	actionBody->setPosition(visibleSize.width/2.0f, visibleSize.height / 2.0f-50);
-	_runnerPt = actionBody->getPosition();
-	_mycallback = CallFunc::create(this, callfunc_selector(AnimationAction::actionFinished));
-	_mycallback->retain();
-#endif
+
+//#ifdef DOUBLEJUMP
+//	_NoJumps = 0;
+//	_myJump = JumpBy::create(0.65f, Point(0, 0), 150, 1);
+//	_myJump->retain();
+////	actionBody->setScale(0.65f);
+////	actionBody->setPosition(visibleSize.width/2.0f, visibleSize.height / 2.0f-50);
+//	_runnerPt = actionBody->getPosition();
+//	_mycallback = CallFunc::create(this, callfunc_selector(AnimationAction::actionFinished));
+//	_mycallback->retain();
+//#endif
 //-------------------------------------------------------------------------------------------------
 
 // CSB 與程式建立序列幀動畫的組合
@@ -342,11 +364,13 @@ bool AnimationAction::init()
 	this->rectReturn = Rect(pos.x - size.width / 2, pos.y - size.height / 2, size.width, size.height);
 	this->addChild(returnbtn, 1);
 
+
 // Example 2 : RunnerNode
-	auto runner = CRunner("RunnerNode.csb", *this);
+	/*auto runner = CRunner("RunnerNode.csb", *this);
 	runner.setPosition(visibleSize.width/ 2.0f + 300, visibleSize.height / 2.0f);
 	runner.setAnimation("cuberanim.plist");
 	runner.go();
+	runner.happy();*/
 //-------------------------------------------------------------------------------------------------
 	
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
@@ -368,12 +392,12 @@ void AnimationAction::actionFinished()
 	_NoJumps--;
 	if (_NoJumps == 1) {
 		auto moveto = MoveTo::create(0.15f, _runnerPt);
-		auto actionBody = this->getChildByTag(101);
+		//auto actionBody = this->getChildByTag(101);
+		auto actionBody = this->getChildByTag(13);
 		actionBody->runAction(moveto);
 		_NoJumps--;
 	}
 #endif
-
 }
 
 
@@ -402,35 +426,44 @@ void AnimationAction::CuberBtnTouchEvent(Ref *pSender, Widget::TouchEventType ty
 			break;
 	}
 }
-
 bool AnimationAction::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)//觸碰開始事件
 {
 	Point touchLoc = pTouch->getLocation();
+	//auto actionBody = this->getChildByTag(13);
+	//actionBody->stopAllActions();
+	//actionBody->runAction(Sequence::create(_myJump, _mycallback, NULL));
+	
 
 #ifdef DOUBLEJUMP
-	auto actionBody = this->getChildByTag(101);
+	//auto actionBody = this->getChildByTag(101);
+	auto actionBody = this->getChildByTag(13);
 	if (_NoJumps == 0) {  // 第一次被按下
-		actionBody->runAction(Sequence::create(_myJump, _mycallback, NULL));
+		unsigned int eid = SimpleAudioEngine::getInstance()->playEffect("thinking cloud.mp3", false);// 播放音效檔
+		actionBody->runAction(Sequence::create(_myJump, _mycallback, NULL)); 
 		_NoJumps++;
 	}
 	else if(_NoJumps == 1 ){  // 第二次被按下
 		_NoJumps++;
 		actionBody->stopAllActions();
-		actionBody->runAction(Sequence::create(_myJump, _mycallback, NULL));
+		unsigned int eid = SimpleAudioEngine::getInstance()->playEffect("thinking cloud.mp3", false);// 播放音效檔
+		actionBody->runAction(Sequence::create(_myJump, _mycallback, NULL)); 
 	}
 #endif
+	
 	return true;
 
-	if (rectCuber.containsPoint(touchLoc)) {
-		this->_sceneno++;
-		int i = this->_sceneno, j = 0;
-		while (i > 0) {
-			this->_cSceneNo[8 - j] = i % 10 + 48;
-			i = i / 10;
-			j++;
-		}
-		label1->setString(_cSceneNo);
-	}
+	//if (rectCuber.containsPoint(touchLoc)) {
+	//	this->_sceneno++;
+	//	int i = this->_sceneno, j = 0;
+	//	while (i > 0) {
+	//		this->_cSceneNo[8 - j] = i % 10 + 48;
+	//		i = i / 10;
+	//		j++;
+	//	}
+	//	label1->setString(_cSceneNo);
+	//}
+
+
 
 }
 
@@ -443,7 +476,6 @@ void  AnimationAction::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEve
 void  AnimationAction::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) //觸碰結束事件 
 {
 	Point touchLoc = pTouch->getLocation();
-
 //	旋轉 RotateBy 的累加效果   ---------------------------------
 	//auto actionbody = this->getChildByTag(101);
 	//actionbody->runAction(_myAction);

@@ -50,13 +50,13 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="SR_bg.mp3" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BloodBar_1" ActionTag="1117902960" Tag="19" IconVisible="False" LeftMargin="1000.0000" RightMargin="80.0000" TopMargin="473.0000" BottomMargin="233.0000" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="BloodBar_1" ActionTag="1117902960" Tag="19" IconVisible="False" LeftMargin="919.5974" RightMargin="160.4026" TopMargin="33.7551" BottomMargin="672.2449" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="200.0000" Y="14.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="1100.0000" Y="240.0000" />
+            <Position X="1019.5974" Y="679.2449" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="0" B="0" />
-            <PrePosition X="0.8594" Y="0.3333" />
+            <PrePosition X="0.7966" Y="0.9434" />
             <PreSize X="0.1563" Y="0.0194" />
             <ImageFileData Type="Default" Path="Default/LoadingBarFile.png" Plist="" />
           </AbstractNodeData>

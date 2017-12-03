@@ -14,11 +14,16 @@ CRunner::CRunner(const char *csbname, cocos2d::Layer &parent)
 	_runnerRoot->setPosition(0,0); // 預設放在 (0,0) 
 	_body = (cocos2d::Sprite *)_runnerRoot->getChildByName("body_cuber01");
 	_body->setColor(Color3B(255, 255, 255));
+
 	_normalFace = (cocos2d::Node *)_runnerRoot->getChildByName("NormalFace");
 	_happyFace = (cocos2d::Node *)_runnerRoot->getChildByName("HappyFace");
 	_depressedFace = (cocos2d::Node *)_runnerRoot->getChildByName("DepressedFace");
+
 	_happyFace->setVisible(false);
 	_depressedFace->setVisible(false);
+
+	_runnerRoot->setTag(13);
+
 	parent.addChild(_runnerRoot);
 }
 
@@ -32,6 +37,22 @@ CRunner::~CRunner()
 void CRunner::go()
 {
 	_body->runAction(_action);
+}
+
+void CRunner::happy()
+{
+	_normalFace->setVisible(false);
+	_happyFace->setVisible(true);
+	_body->setColor(RUNNERCOLOR3);
+
+}
+
+void CRunner::sad()
+{
+	_normalFace->setVisible(false);
+	_depressedFace->setVisible(true);
+	_body->setColor(RUNNERCOLOR1);
+
 }
 
 void CRunner::setAnimation(const char *plistFile)
@@ -58,3 +79,4 @@ void CRunner::setColor(const Color3B& color)
 {
 	_body->setColor(color);
 }
+

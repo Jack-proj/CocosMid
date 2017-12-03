@@ -167,7 +167,7 @@
       <ObjectData Name="rootNode" Tag="15" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="triblock" ActionTag="1414546605" VisibleForFrame="False" Alpha="24" Tag="37" IconVisible="False" LeftMargin="-84.0000" RightMargin="-84.0000" TopMargin="-72.0000" BottomMargin="-72.0000" ctype="SpriteObjectData">
+          <AbstractNodeData Name="triblock" ActionTag="1414546605" Tag="37" IconVisible="False" LeftMargin="-84.0000" RightMargin="-84.0000" TopMargin="-72.0000" BottomMargin="-72.0000" ctype="SpriteObjectData">
             <Size X="168.0000" Y="144.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
@@ -178,7 +178,7 @@
             <FileData Type="PlistSubImage" Path="triblock.png" Plist="scene101.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="triOuter" ActionTag="-1621414207" VisibleForFrame="False" Alpha="76" Tag="38" IconVisible="False" LeftMargin="-85.4964" RightMargin="-85.5036" TopMargin="-92.0020" BottomMargin="-75.9980" ctype="SpriteObjectData">
+          <AbstractNodeData Name="triOuter" ActionTag="-1621414207" Tag="38" IconVisible="False" LeftMargin="-85.4964" RightMargin="-85.5036" TopMargin="-92.0020" BottomMargin="-75.9980" ctype="SpriteObjectData">
             <Size X="171.0000" Y="168.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="0.0036" Y="8.0020" />
@@ -197,7 +197,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="PlistSubImage" Path="flame1_01.png" Plist="scene101.plist" />
+            <FileData Type="PlistSubImage" Path="flame1_07.png" Plist="scene101.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="trishadow_1" ActionTag="1175347666" Tag="11" IconVisible="False" LeftMargin="-64.1924" RightMargin="-72.8076" TopMargin="72.7700" BottomMargin="-95.7700" ctype="SpriteObjectData">

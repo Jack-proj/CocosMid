@@ -20,6 +20,7 @@ private:
 	cocos2d::Sprite *_shadow;
 	cocos2d::Action *_action;
 
+
 public:
 	CRunner(const char *csbname, cocos2d::Layer &parent);
 	~CRunner();
@@ -28,6 +29,8 @@ public:
 	void setColor(const cocos2d::Color3B& color);
 	void setAnimation(const char *plistFile);
 	void go();
+	void happy();
+	void sad();
 };
 
 #endif
