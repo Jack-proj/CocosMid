@@ -1,5 +1,5 @@
 #include "CRunner.h"
-
+#define DOUBLEJUMP 1
 USING_NS_CC;
 
 //
@@ -18,6 +18,8 @@ CRunner::CRunner(const char *csbname, cocos2d::Layer &parent)
 	_normalFace = (cocos2d::Node *)_runnerRoot->getChildByName("NormalFace");
 	_happyFace = (cocos2d::Node *)_runnerRoot->getChildByName("HappyFace");
 	_depressedFace = (cocos2d::Node *)_runnerRoot->getChildByName("DepressedFace");
+
+	_rect1 = _body->getBoundingBox();
 
 	_happyFace->setVisible(false);
 	_depressedFace->setVisible(false);
@@ -44,9 +46,15 @@ void CRunner::happy()
 	_normalFace->setVisible(false);
 	_happyFace->setVisible(true);
 	_body->setColor(RUNNERCOLOR3);
-
 }
 
+void CRunner::normal()
+{
+	_normalFace->setVisible(true);
+	_happyFace->setVisible(false);
+	_depressedFace->setVisible(false);
+	_body->setColor(RUNNERCOLOR1);
+}
 void CRunner::sad()
 {
 	_normalFace->setVisible(false);

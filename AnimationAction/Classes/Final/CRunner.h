@@ -19,9 +19,10 @@ private:
 	cocos2d::Sprite *_body;
 	cocos2d::Sprite *_shadow;
 	cocos2d::Action *_action;
-
+	//::Rect     _rect1;
 
 public:
+	cocos2d::Rect     _rect1;
 	CRunner(const char *csbname, cocos2d::Layer &parent);
 	~CRunner();
 	void setPosition(const cocos2d::Point &pos);
@@ -30,6 +31,7 @@ public:
 	void setAnimation(const char *plistFile);
 	void go();
 	void happy();
+	void normal();
 	void sad();
 };
 

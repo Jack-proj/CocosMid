@@ -83,6 +83,8 @@
           <PlistImageFile Name="sr_line1.png" Key="sr_line1.png" />
           <PlistImageFile Name="sr_line2.png" Key="sr_line2.png" />
         </PlistImageFolder>
+        <Fnt Name="321GO.fnt" />
+        <Image Name="321GO_0.png" />
         <Project Name="AnimationAction.csd" Type="Scene" />
         <Audio Name="arrivalsfinalsound.mp3" />
         <Project Name="ASimpleRunner.csd" Type="Node" />
@@ -90,6 +92,7 @@
         <Fnt Name="hansans48.fnt" />
         <Image Name="hansans48_0.png" />
         <TTF Name="Marker Felt.ttf" />
+        <Project Name="Menu.csd" Type="Scene" />
         <Project Name="RunnerNode.csd" Type="Node" />
         <Audio Name="running.mp3" />
         <Audio Name="SR_bg.mp3" />

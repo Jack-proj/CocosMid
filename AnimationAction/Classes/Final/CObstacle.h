@@ -8,10 +8,13 @@
 class CObstacle {
 private:
 	cocos2d::Node   *_obsRoot;
+	cocos2d::Sprite *_body;
+	//cocos2d::Rect _rect2;
 
 	cocos2d::MoveTo *_obsAction;
 	cocostudio::timeline::ActionTimeline *_triAction;
 public:
+	cocos2d::Rect _rect2;
 	CObstacle(const char *csbname, cocos2d::Layer &parent);
 	~CObstacle();
 	void effectPlay();

@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "AnimationAction.h"
+#include "Play_Menu.h"
 
 USING_NS_CC;
 
@@ -45,7 +46,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0f / 60.0f);
 
     FileUtils::getInstance()->addSearchPath("res");
-	auto scene = AnimationAction::createScene();
+	//auto scene = AnimationAction::createScene();
+	auto scene = Play_Menu::createScene();
 
     // run
     director->runWithScene(scene);
