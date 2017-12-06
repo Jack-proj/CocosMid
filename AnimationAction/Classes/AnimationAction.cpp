@@ -82,7 +82,7 @@ bool AnimationAction::init()
 	_myJump = JumpBy::create(0.65f, Point(0, 0), 150, 1);
 	_myJump->retain();
 	_runnerPt = Vec2(1100, 330);
-	_mycallback = CallFunc::create(this, callfunc_selector(AnimationAction::actionFinished));
+    _mycallback = CallFunc::create(this, callfunc_selector(AnimationAction::actionFinished));
 	_mycallback->retain();
 #endif
 
@@ -118,7 +118,7 @@ bool AnimationAction::init()
 void AnimationAction::actionFinished()
 {
 	// do something on complete
-	CCLOG("B %d\n", _NoJumps);
+	//CCLOG("B %d\n", _NoJumps);
 
 #ifdef DOUBLEJUMP
 	_NoJumps--;
