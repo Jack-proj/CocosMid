@@ -87,28 +87,19 @@ bool AnimationAction::init()
 	_mycallback->retain();
 #endif
 
+	auto loadingBar = (cocos2d::ui::LoadingBar *)rootNode->getChildByName("BloodBar");
+	loadingBar->setDirection(LoadingBar::Direction::LEFT);
+	loadingBar->setPercent(100);
+
 //障礙物測試************************************************************
-	/*auto obj1 = CObstacle("triangleNode.csb", *this);
-	obj1.setPosition(155, 330);
-	obj1.setScale(0.5);
-	obj1.effectPlay();*/
 
 	/*if (runner._rect1.intersectsRect(obj1._rect2)) {
 		runner.happy();
 	}
 */
-
-// Action -----------------------------------------------------------------------------------------
-	//auto actionBody = Sprite::createWithSpriteFrameName("cuber01.png");
-	//actionBody->setPosition(visibleSize.width / 2.0f, visibleSize.height / 2.0f);
-	//actionBody->setTag(101);	// 用於取得該物件
-	//actionBody->setColor(Color3B(82, 131, 151));
-	//this->addChild(actionBody);
-	// 後續其他的範例都使用這個 actionBody 
-
 	
 //-------------------------------------------------------------------------------------------------
-	
+	jumpornot = false;
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
 	_listener1->onTouchBegan = CC_CALLBACK_2(AnimationAction::onTouchBegan, this);		//加入觸碰開始事件
 	_listener1->onTouchMoved = CC_CALLBACK_2(AnimationAction::onTouchMoved, this);		//加入觸碰移動事件
@@ -124,10 +115,12 @@ bool AnimationAction::init()
 	replaybtn = C3SButton::create();
 	replaybtn->setButtonInfo("replaybtn.png", "replaybtn.png", "replaybtn.png", loc);
 	this->addChild(replaybtn, 2);
+	return true;
 
-    return true;
-
-
+	//jump***************************************************************
+	if (jumpornot == true) {
+		runner.happy();
+	}
 }
 
 void AnimationAction::actionFinished()
@@ -151,12 +144,35 @@ void AnimationAction::doStep(float dt)
 	auto obj1 = CObstacle("triangleNode.csb", *this);
 	obj1.setPosition(155, 330);
 	obj1.setScale(0.5);
-	obj1.effectPlay();
+
+
+	auto obj2 = CObstacle("triangleNode.csb", *this);
+	obj2.setPosition(155, 330);
+	obj2.setScale(0.7);
+
+
+	auto obj3 = CObstacle("triangleNode.csb", *this);
+	obj3.setPosition(155, 330);
+	obj3.setScale(1);
+
+
+
+	switch (rand() % 3) {
+	case 0:	
+		obj1.effectPlay();
+		break;
+	case 1:
+		obj2.effectPlay();
+		break;
+	case 2:
+		obj3.effectPlay();
+		break;
+	}
+
+
 }
 
-void AnimationAction::open(float dt)
-{
-}
+
 
 void AnimationAction::CuberBtnTouchEvent(Ref *pSender, Widget::TouchEventType type)
 {
@@ -211,6 +227,7 @@ void  AnimationAction::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEve
 void  AnimationAction::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) //觸碰結束事件 
 {
 	Point touchLoc = pTouch->getLocation();
+	jumpornot = true;
 	if (replaybtn->touchesBegan(touchLoc)) {
 		auto scene = AnimationAction::createScene();
 		Director::getInstance()->replaceScene(scene);

@@ -50,7 +50,7 @@
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="SR_bg.mp3" Plist="" />
           </AbstractNodeData>
-          <AbstractNodeData Name="BloodBar_1" ActionTag="1117902960" Tag="19" IconVisible="False" LeftMargin="919.5974" RightMargin="160.4026" TopMargin="33.7551" BottomMargin="672.2449" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <AbstractNodeData Name="BloodBar" ActionTag="1117902960" Tag="19" IconVisible="False" LeftMargin="919.5974" RightMargin="160.4026" TopMargin="33.7551" BottomMargin="672.2449" ProgressInfo="100" ctype="LoadingBarObjectData">
             <Size X="200.0000" Y="14.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="1019.5974" Y="679.2449" />

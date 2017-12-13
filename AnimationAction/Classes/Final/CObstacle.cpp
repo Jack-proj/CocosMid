@@ -33,6 +33,7 @@ void CObstacle::effectPlay()
 	_obsRoot->runAction(_obsAction);//«e¶i
 }
 
+
 void CObstacle::setPosition(const cocos2d::Point & pos)
 {
 	_obsRoot->setPosition(pos);

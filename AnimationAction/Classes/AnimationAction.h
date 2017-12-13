@@ -7,6 +7,8 @@
 #include "SimpleAudioEngine.h"
 #include "cocostudio/CocoStudio.h"
 #include "Final/C3SButton.h"
+#include "Final/CObstacle.h"
+#include "Final/CRunner.h"
 
 class AnimationAction : public cocos2d::Layer
 {
@@ -28,6 +30,13 @@ private:
 	cocos2d::Rect    rectCuber;
 
 	C3SButton *replaybtn;
+	/*CObstacle obj1;
+	CObstacle obj2;
+	CObstacle obj3;
+*/
+
+	bool jumpornot;
+
 public:
 	~AnimationAction();
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -37,8 +46,6 @@ public:
     virtual bool init();
 	void CuberBtnTouchEvent(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void doStep(float dt);
-	//321
-	void open(float dt);
 
 	// Action ªº CallBack ¨ç¦¡
 	void AnimationAction::actionFinished();
