@@ -92,6 +92,7 @@ bool AnimationAction::init()
 	loadingBar->setPercent(100);
 
 //»ÙÃªª«´ú¸Õ************************************************************
+	
 
 	/*if (runner._rect1.intersectsRect(obj1._rect2)) {
 		runner.happy();
@@ -141,6 +142,7 @@ void AnimationAction::actionFinished()
 
 void AnimationAction::doStep(float dt)
 {
+	
 	auto obj1 = CObstacle("triangleNode.csb", *this);
 	obj1.setPosition(155, 330);
 	obj1.setScale(0.5);
@@ -154,8 +156,6 @@ void AnimationAction::doStep(float dt)
 	auto obj3 = CObstacle("triangleNode.csb", *this);
 	obj3.setPosition(155, 330);
 	obj3.setScale(1);
-
-
 
 	switch (rand() % 3) {
 	case 0:	

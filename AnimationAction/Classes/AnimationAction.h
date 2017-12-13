@@ -30,10 +30,10 @@ private:
 	cocos2d::Rect    rectCuber;
 
 	C3SButton *replaybtn;
-	/*CObstacle obj1;
-	CObstacle obj2;
-	CObstacle obj3;
-*/
+	CObstacle *obj1;
+	CObstacle *obj2;
+	CObstacle *obj3;
+	CRunner *runner;
 
 	bool jumpornot;
 

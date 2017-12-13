@@ -120,7 +120,7 @@ void Play_Menu::onTouchEnded(cocos2d::Touch * pTouch, cocos2d::Event * pEvent)
 	Point touchLoc = pTouch->getLocation();
 	if (_playbtn->touchesBegan(touchLoc)) {
 		this->schedule(CC_SCHEDULE_SELECTOR(Play_Menu::doStep),1.0f);
-		this->scheduleOnce(schedule_selector(Play_Menu::next), 4);
+		this->scheduleOnce(schedule_selector(Play_Menu::next), 3.5f);
 	}
 }
 
