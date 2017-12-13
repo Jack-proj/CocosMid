@@ -42,3 +42,8 @@ void CObstacle::setPosition(const float x, const float y)
 {
 	_obsRoot->setPosition(x,y);
 }
+
+void CObstacle::setScale(float s)
+{
+	_obsRoot->setScale(s);
+}

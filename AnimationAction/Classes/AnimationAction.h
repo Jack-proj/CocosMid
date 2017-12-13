@@ -6,6 +6,7 @@
 #include "ui/CocosGUI.h"
 #include "SimpleAudioEngine.h"
 #include "cocostudio/CocoStudio.h"
+#include "Final/C3SButton.h"
 
 class AnimationAction : public cocos2d::Layer
 {
@@ -25,6 +26,8 @@ private:
 	cocos2d::Sprite *returnbtn;
 	cocos2d::Rect    rectReturn;
 	cocos2d::Rect    rectCuber;
+
+	C3SButton *replaybtn;
 public:
 	~AnimationAction();
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -34,9 +37,12 @@ public:
     virtual bool init();
 	void CuberBtnTouchEvent(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void doStep(float dt);
+	//321
+	void open(float dt);
 
 	// Action ªº CallBack ¨ç¦¡
 	void AnimationAction::actionFinished();
+
 
 	//Ä²¸I
 	cocos2d::EventListenerTouchOneByOne *_listener1;

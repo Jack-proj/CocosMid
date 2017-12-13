@@ -13,12 +13,13 @@ class Play_Menu : public cocos2d::Layer
 private:
 	cocos2d::Sequence *_mySequence;
 	C3SButton *_playbtn;
-	
+	CCLabelTTF *label;
+	int counter;  
+	char _cSceneNo[1];
+	Label *Txttime;
 
 public:
 	Label *label1;
-	int  _sceneno;
-	char _cSceneNo[10];
 
 	~Play_Menu();
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -28,7 +29,7 @@ public:
 	virtual bool init();
 	//void CuberBtnTouchEvent(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void doStep(float dt);
-
+	void next(float dt);
 
 	//Ä²¸I
 	cocos2d::EventListenerTouchOneByOne *_listener1;

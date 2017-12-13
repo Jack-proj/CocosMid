@@ -11,7 +11,7 @@
         <iOS_Target Value="AnimationAction-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="None" />
-        <RunPlatform Value="None" />
+        <RunPlatform Value="Android" />
         <FrameworkVersion Value="cocos2d-x-3.10" />
         <IsDebugKeystore Value="True" />
         <EnableSourceMap Value="False" />
@@ -23,18 +23,6 @@
         <LastPublishType Value="Resource" />
         <IsLastPublish Value="True" />
         <LastRunType Value="Windows" />
-      </Value>
-    </Item>
-    <Item Key="TabsParamsKey">
-      <Value ctype="TabsInfo">
-        <OpenedDocuments>
-          <FilePathData Path="AnimationAction.csd" />
-          <FilePathData Path="RunnerNode.csd" />
-          <FilePathData Path="triangleNode.csd" />
-          <FilePathData Path="ASimpleRunner.csd" />
-          <FilePathData Path="Menu.csd" />
-        </OpenedDocuments>
-        <ActiveDocument Path="Menu.csd" />
       </Value>
     </Item>
   </Properties>

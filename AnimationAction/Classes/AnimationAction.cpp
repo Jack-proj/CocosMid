@@ -59,7 +59,6 @@ bool AnimationAction::init()
     
     auto rootNode = CSLoader::createNode("AnimationAction.csb");
     addChild(rootNode);
-
 //跑道線動畫************************************************************
 	auto runway = (cocos2d::Sprite *)rootNode->getChildByName("Sprite_1");
 	auto action = (ActionTimeline *)CSLoader::createTimeline("AnimationAction.csb");
@@ -69,6 +68,8 @@ bool AnimationAction::init()
 //背景音樂**************************************************************
 	auto bgm = (cocostudio::ComAudio *)rootNode->getChildByName("BGM")->getComponent("BGM");
 	bgm->playBackgroundMusic();
+
+
 
 //主角******************************************************************
 	auto runner = CRunner("RunnerNode.csb", *this);
@@ -87,9 +88,10 @@ bool AnimationAction::init()
 #endif
 
 //障礙物測試************************************************************
-	auto obj1 = CObstacle("triangleNode.csb", *this);
+	/*auto obj1 = CObstacle("triangleNode.csb", *this);
 	obj1.setPosition(155, 330);
-	obj1.effectPlay();
+	obj1.setScale(0.5);
+	obj1.effectPlay();*/
 
 	/*if (runner._rect1.intersectsRect(obj1._rect2)) {
 		runner.happy();
@@ -103,6 +105,8 @@ bool AnimationAction::init()
 	//actionBody->setColor(Color3B(82, 131, 151));
 	//this->addChild(actionBody);
 	// 後續其他的範例都使用這個 actionBody 
+
+	
 //-------------------------------------------------------------------------------------------------
 	
 	_listener1 = EventListenerTouchOneByOne::create();	//創建一個一對一的事件聆聽器
@@ -111,8 +115,19 @@ bool AnimationAction::init()
 	_listener1->onTouchEnded = CC_CALLBACK_2(AnimationAction::onTouchEnded, this);		//加入觸碰離開事件
 
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(_listener1, this);	//加入剛創建的事件聆聽器
-	this->schedule(CC_SCHEDULE_SELECTOR(AnimationAction::doStep));
+	this->schedule(CC_SCHEDULE_SELECTOR(AnimationAction::doStep),2);
+
+	//重玩按鈕************************************************************
+	auto emiterpos = (Sprite *)(rootNode->getChildByName("replaybtn"));
+	Point loc = emiterpos->getPosition();
+	emiterpos->setVisible(false);
+	replaybtn = C3SButton::create();
+	replaybtn->setButtonInfo("replaybtn.png", "replaybtn.png", "replaybtn.png", loc);
+	this->addChild(replaybtn, 2);
+
     return true;
+
+
 }
 
 void AnimationAction::actionFinished()
@@ -131,10 +146,16 @@ void AnimationAction::actionFinished()
 #endif
 }
 
-
 void AnimationAction::doStep(float dt)
 {
+	auto obj1 = CObstacle("triangleNode.csb", *this);
+	obj1.setPosition(155, 330);
+	obj1.setScale(0.5);
+	obj1.effectPlay();
+}
 
+void AnimationAction::open(float dt)
+{
 }
 
 void AnimationAction::CuberBtnTouchEvent(Ref *pSender, Widget::TouchEventType type)
@@ -157,6 +178,7 @@ void AnimationAction::CuberBtnTouchEvent(Ref *pSender, Widget::TouchEventType ty
 			break;
 	}
 }
+
 bool AnimationAction::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)//觸碰開始事件
 {
 	Point touchLoc = pTouch->getLocation();
@@ -189,4 +211,8 @@ void  AnimationAction::onTouchMoved(cocos2d::Touch *pTouch, cocos2d::Event *pEve
 void  AnimationAction::onTouchEnded(cocos2d::Touch *pTouch, cocos2d::Event *pEvent) //觸碰結束事件 
 {
 	Point touchLoc = pTouch->getLocation();
+	if (replaybtn->touchesBegan(touchLoc)) {
+		auto scene = AnimationAction::createScene();
+		Director::getInstance()->replaceScene(scene);
+	}
 }

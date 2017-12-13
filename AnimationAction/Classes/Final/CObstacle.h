@@ -20,5 +20,6 @@ public:
 	void effectPlay();
 	void setPosition(const cocos2d::Point &pos);
 	void setPosition(const float x, const float y);
+	void setScale(float s);
 };
 #endif

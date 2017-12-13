@@ -40,7 +40,7 @@ Play_Menu::~Play_Menu()
 
 bool Play_Menu::init()
 {
-
+	counter = 3;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Size size;
@@ -60,7 +60,7 @@ bool Play_Menu::init()
 	_listener1->onTouchEnded = CC_CALLBACK_2(Play_Menu::onTouchEnded, this);		//加入觸碰離開事件
 
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(_listener1, this);	//加入剛創建的事件聆聽器
-	this->schedule(CC_SCHEDULE_SELECTOR(Play_Menu::doStep));
+	/*this->schedule(CC_SCHEDULE_SELECTOR(Play_Menu::doStep));*/
 
 	auto emiterpos = (Sprite *)(rootNode->getChildByName("Button_2"));
 	Point loc = emiterpos->getPosition();
@@ -71,34 +71,41 @@ bool Play_Menu::init()
 	//Button *playbtn = dynamic_cast<Button*>(rootNode->getChildByName("Button_2"));
 	//_playbtn->addTouchEventListener(CC_CALLBACK_2(Play_Menu::PlayBtnTouchEvent, this));
 
-	this->_sceneno = 101;
-	strcpy(this->_cSceneNo, "Scene 101");
-	auto label1 = Label::createWithBMFont("fonts/couriernew32.fnt", "Scene 101");
-	size = label1->getContentSize();
-	label1->setColor(Color3B::WHITE);
-	label1->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - size.height));
-	this->addChild(label1, 1);
+	strcpy(this->_cSceneNo, "3");
+	Txttime = Label::createWithBMFont("fonts/couriernew32.fnt", _cSceneNo);
+	size = Txttime->getContentSize();
+	Txttime->setColor(Color3B::WHITE);
+	Txttime->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - size.height));
+	this->addChild(Txttime, 1);
+
+	label = CCLabelTTF::create(" ", "arial", 48);
+	label->setAnchorPoint(ccp(1, 1));
+	label->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height));
+	this->addChild(label);
 
 	return true;
 }
 
 void Play_Menu::doStep(float dt)
 {
+	this->counter -= dt;
+	if (this->counter <= 0) {
+		this->counter = 0;
+		this->Txttime->setVisible(false);
+		label->setString("Go");
+	}
+	this->Txttime->setString(CCString::createWithFormat("%d", counter)->getCString());
+}
+
+void Play_Menu::next(float dt) 
+{
+	auto scene = AnimationAction::createScene();
+	Director::getInstance()->replaceScene(scene);
 }
 
 bool Play_Menu::onTouchBegan(cocos2d::Touch * pTouch, cocos2d::Event * pEvent)
 {
 	Point touchLoc = pTouch->getLocation();
-	//if (_playbtn->touchesBegan(touchLoc)) {
-	//	this->_sceneno++;
-	//	int i = this->_sceneno, j = 0;
-	//	while (i > 0) {
-	//		this->_cSceneNo[8 - j] = i % 10 + 48;
-	//		i = i / 10;
-	//		j++;
-	//	}
-	//	label1->setString(_cSceneNo);
-	//}
 
 	return true;
 }
@@ -112,8 +119,8 @@ void Play_Menu::onTouchEnded(cocos2d::Touch * pTouch, cocos2d::Event * pEvent)
 {
 	Point touchLoc = pTouch->getLocation();
 	if (_playbtn->touchesBegan(touchLoc)) {
-		auto scene = AnimationAction::createScene();
-		Director::getInstance()->replaceScene(scene);
+		this->schedule(CC_SCHEDULE_SELECTOR(Play_Menu::doStep),1.0f);
+		this->scheduleOnce(schedule_selector(Play_Menu::next), 4);
 	}
 }
 
